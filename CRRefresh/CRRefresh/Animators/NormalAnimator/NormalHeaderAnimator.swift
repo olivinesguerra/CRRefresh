@@ -38,14 +38,14 @@ open class NormalHeaderAnimator: UIView, CRRefreshProtocol {
     }
     open var releaseToRefreshDescription = crBundle?.localizedString(key: "CRRefreshHeaderPullingText")
     open var loadingDescription = crBundle?.localizedString(key: "CRRefreshHeaderRefreshingText")
-
+    
     open var view: UIView { return self }
     open var insets: UIEdgeInsets = .zero
     open var trigger: CGFloat  = 60.0
     open var execute: CGFloat  = 60.0
     open var endDelay: CGFloat = 0
     public var hold: CGFloat   = 60
-
+    
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
         imageView.image = crBundle?.imageFromBundle("refresh_arrow")
@@ -61,7 +61,7 @@ open class NormalHeaderAnimator: UIView, CRRefreshProtocol {
     }()
     
     fileprivate let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(style: .gray)
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
         indicatorView.isHidden = true
         return indicatorView
     }()
@@ -85,7 +85,7 @@ open class NormalHeaderAnimator: UIView, CRRefreshProtocol {
         titleLabel.text        = loadingDescription
         imageView.transform    = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
     }
-  
+    
     open func refreshEnd(view: CRRefreshComponent, finish: Bool) {
         if finish {
             indicatorView.stopAnimating()
@@ -132,7 +132,7 @@ open class NormalHeaderAnimator: UIView, CRRefreshProtocol {
             break
         }
     }
-
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         let s = bounds.size

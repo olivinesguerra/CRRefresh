@@ -38,17 +38,17 @@ class FastCheckLayer: CALayer {
         let start = CAKeyframeAnimation(keyPath: "strokeStart")
         start.values = [0, 0.4, 0.3]
         start.isRemovedOnCompletion = false
-        start.fillMode = CAMediaTimingFillMode.forwards
+        start.fillMode = kCAFillModeForwards
         start.duration = 0.5
-        start.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        start.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         
         let end = CAKeyframeAnimation(keyPath: "strokeEnd")
         end.values = [0, 1, 0.9]
-
+        
         end.isRemovedOnCompletion = false
-        end.fillMode = CAMediaTimingFillMode.forwards
+        end.fillMode = kCAFillModeForwards
         end.duration = 0.8
-        end.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        end.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         
         check?.add(start, forKey: "start")
         check?.add(end, forKey: "end")
@@ -76,8 +76,8 @@ class FastCheckLayer: CALayer {
     private func drawCheck() {
         let width = Double(frame.size.width)
         check = CAShapeLayer()
-        check?.lineCap   = CAShapeLayerLineCap.round
-        check?.lineJoin  = CAShapeLayerLineJoin.round
+        check?.lineCap   = kCALineCapRound
+        check?.lineJoin  = kCALineCapRound
         check?.lineWidth = lineWidth
         check?.fillColor = UIColor.clear.cgColor
         check?.strokeColor = color.cgColor
@@ -92,5 +92,5 @@ class FastCheckLayer: CALayer {
         check?.path = path.cgPath
         addSublayer(check!)
     }
-
+    
 }

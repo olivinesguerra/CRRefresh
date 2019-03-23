@@ -28,11 +28,11 @@ import UIKit
 open class NormalFooterAnimator: UIView, CRRefreshProtocol {
     
     static let crBundle = CRRefreshBundle.bundle(name: "NormalFooter", for: NormalFooterAnimator.self)
-
+    
     open var loadingMoreDescription = crBundle?.localizedString(key: "CRRefreshFooterIdleText")
     open var noMoreDataDescription  = crBundle?.localizedString(key: "CRRefreshFooterNoMoreText")
     open var loadingDescription     = crBundle?.localizedString(key: "CRRefreshFooterRefreshingText")
-
+    
     open var view: UIView { return self }
     open var duration: TimeInterval = 0.3
     open var insets: UIEdgeInsets   = .zero
@@ -50,7 +50,7 @@ open class NormalFooterAnimator: UIView, CRRefreshProtocol {
     }()
     
     fileprivate lazy var indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(style: .gray)
+        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
         indicatorView.isHidden = true
         return indicatorView
     }()

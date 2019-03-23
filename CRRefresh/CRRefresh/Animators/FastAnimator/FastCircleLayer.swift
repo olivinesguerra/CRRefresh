@@ -36,7 +36,7 @@ class FastCircleLayer: CALayer {
     let circle = CAShapeLayer()
     
     let point  = CAShapeLayer()
-        
+    
     private let pointBack = CALayer()
     
     private var rotated: CGFloat = 0
@@ -153,7 +153,7 @@ class FastCircleLayer: CALayer {
         addSublayer(circle)
         circle.isHidden = true
     }
-
+    
     private func drawPoint() {
         let width  = frame.size.width
         let path = UIBezierPath()
@@ -162,7 +162,7 @@ class FastCircleLayer: CALayer {
                     startAngle: CGFloat(Double.pi * 0.5),
                     endAngle: CGFloat((Double.pi * 0.5) - 0.1),
                     clockwise: false)
-        point.lineCap     = CAShapeLayerLineCap.round
+        point.lineCap     = kCALineCapRound
         point.lineWidth   = lineWidth*2
         point.fillColor   = UIColor.clear.cgColor
         point.strokeColor = pointColor.cgColor
@@ -183,10 +183,10 @@ class FastCircleLayer: CALayer {
                       endAngle: CGFloat((Double.pi * 0.5) - 0.3),
                       clockwise: false)
         path.toValue = toPath.cgPath
-        path.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        path.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         path.duration = 2
         path.isRemovedOnCompletion = false
-        path.fillMode = CAMediaTimingFillMode.forwards
+        path.fillMode = kCAFillModeForwards
         point.add(path, forKey: "path")
     }
     

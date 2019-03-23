@@ -44,7 +44,7 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
     var isAnimation: Bool = false
     // 计时器
     var displayLink: CADisplayLink?
-
+    
     deinit {
         displayLink?.invalidate()
         displayLink = nil
@@ -158,7 +158,7 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
     
     private func addDisPlay() {
         displayLink = CADisplayLink(target: self, selector: #selector(displayAction))
-        displayLink?.add(to: .main, forMode: .common)
+        displayLink?.add(to: .main, forMode: RunLoopMode.commonModes)
     }
     
     private func removeDisPlay() {
@@ -176,7 +176,7 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
     
     private func boundAnimation(x: CGFloat, y: CGFloat) {
         let bounce = CAKeyframeAnimation(keyPath: "transform.translation.y")
-        bounce.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        bounce.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         bounce.duration = bounceDuration
         bounce.values = [
             reference.frame.origin.y,
@@ -187,14 +187,14 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
             y
         ]
         bounce.isRemovedOnCompletion = true
-        bounce.fillMode = CAMediaTimingFillMode.forwards
+        bounce.fillMode = kCAFillModeForwards
         bounce.delegate = self
         reference.layer.add(bounce, forKey: "return")
     }
     
     private func boundDownAnimation(x: CGFloat, y: CGFloat) {
         let bounce = CAKeyframeAnimation(keyPath: "transform.translation.y")
-        bounce.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        bounce.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         bounce.duration = bounceDuration/2
         bounce.values = [
             y,
@@ -202,7 +202,7 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
             y
         ]
         bounce.isRemovedOnCompletion = true
-        bounce.fillMode = CAMediaTimingFillMode.forwards
+        bounce.fillMode = kCAFillModeForwards
         bounce.delegate = self
         reference.layer.add(bounce, forKey: "returnDown")
     }
@@ -212,5 +212,5 @@ class RamotionWaveLayer: CALayer, CAAnimationDelegate {
         removeDisPlay()
         isAnimation = false
     }
-
+    
 }
